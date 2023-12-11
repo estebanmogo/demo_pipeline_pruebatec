@@ -17,6 +17,7 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'test'
+  displayName: 'Ejecutar Pruebas Unitarias y de Integración'
 
 # Paso 2: Construir y Empaquetar la Aplicación
 - task: Gradle@2
@@ -28,13 +29,14 @@ steps:
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     tasks: 'build'
+  displayName: 'Construir y Empaquetar la Aplicación'
 
 # Paso 3: Implementar la Automatización del Despliegue
 - script: |
     echo 'Desplegando la aplicación...'
-  displayName: 'Deployment'
+  displayName: 'Implementar la automatización del despliegue '
 
 # Paso 4: Notificar sobre el Éxito o Fallos
 - script: |
     echo 'Enviando notificaciones...'
-  displayName: 'Send Notification'
+  displayName: 'Notificar sobre el éxito o fallos en el proceso'
