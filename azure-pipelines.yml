@@ -31,12 +31,17 @@ steps:
     tasks: 'build'
   displayName: 'Construir y Empaquetar la Aplicación'
 
-# Paso 3: Implementar la Automatización del Despliegue
+# Paso 3: Construir Imagen Docker
 - script: |
-    echo 'Desplegando la aplicación...'
-  displayName: 'Implementar la automatización del despliegue '
+    docker build -t miapp .
+  displayName: 'Construir Imagen Docker'
 
-# Paso 4: Notificar sobre el Éxito o Fallos
+# Paso 4: Ejecutar Contenedor Docker (Opcional)
+- script: |
+    docker run -d -p 8080:8080 --name miapp miapp
+  displayName: 'Ejecutar Contenedor Docker'
+
+# Paso 5: Notificar sobre el Éxito o Fallos
 - script: |
     echo 'Enviando notificaciones...'
   displayName: 'Notificar sobre el éxito o fallos en el proceso'
