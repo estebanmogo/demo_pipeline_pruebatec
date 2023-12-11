@@ -46,20 +46,31 @@ steps:
     docker run -d -p 8080:8080 --name miapp miapp
   displayName: 'Ejecutar Contenedor Docker'
 
-# Paso 6: Imprimir URL para Acceso
+# Paso 6: Verificar Estado del Contenedor
 - script: |
-    echo "La aplicación puede ser accesible en http://$(curl -s http://whatismyip.akamai.com/):8080/si la IP es pública y los puertos están mapeados correctamente."
-  displayName: 'Imprimir URL para Acceso'
+    echo "Verificando el estado del contenedor..."
+    docker ps | grep miapp
+  displayName: 'Verificar Estado del Contenedor'
 
-# Paso 7: Pausa para Pruebas Manuales (5 minutos)
+# Paso 7: Imprimir Logs del Contenedor Docker
 - script: |
-    echo "Esperando 10 minutos para pruebas manuales..."
-    sleep 600
+    echo "Imprimiendo logs del contenedor Docker:"
+    docker logs miapp
+  displayName: 'Imprimir Logs del Contenedor Docker'
+
+# Paso 8: Pausa para Pruebas Manuales (5 minutos)
+- script: |
+    echo "Esperando 3 minutos para pruebas manuales..."
+    sleep 180
   displayName: 'Pausa para Pruebas Manuales'
 
-# Paso 8: Notificar sobre el Éxito o Fallos
+# Paso 9: Notificar sobre el Éxito o Fallos
 - script: |
     echo 'Enviando notificaciones...'
     # Aquí iría el comando o script para enviar notificaciones por correo electrónico.
     # Esto puede requerir configuración adicional o integración con un servicio de correo electrónico.
   displayName: 'Notificar sobre el éxito o fallos en el proceso'
+
+
+
+
