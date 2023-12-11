@@ -1,6 +1,6 @@
 plugins {
     id 'war'
-    id 'org.gretty' version '3.0.5' // Para ejecutar tu aplicación web durante el desarrollo
+    id 'org.gretty' version '3.0.5'
     id 'eclipse-wtp'
 }
 
@@ -9,14 +9,12 @@ repositories {
 }
 
 dependencies {
-    // La API de Servlet es proporcionada por el servidor en tiempo de ejecución, pero necesitas
-    // incluirla para la compilación y las pruebas.
-    providedCompile 'javax.servlet:servlet-api:2.5'
-    testImplementation 'javax.servlet:servlet-api:2.5'
+    // Cambiar de providedCompile a implementation
+    implementation 'javax.servlet:servlet-api:2.5'
 
     runtime 'javax.servlet:jstl:1.1.2'
-    
-    // Dependencias de prueba
+
+    testImplementation 'javax.servlet:servlet-api:2.5'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testImplementation 'org.mockito:mockito-core:3.6.0'
