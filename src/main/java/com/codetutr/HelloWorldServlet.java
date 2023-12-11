@@ -16,7 +16,6 @@ public class HelloWorldServlet extends HttpServlet {
         resp.getOutputStream().write(message.getBytes());
     }
 
-    // Método separado para facilitar las pruebas
     public String getMessage() {
         return "Hello, World.";
     }
