@@ -1,28 +1,27 @@
 package com.testapp.core;
 
-import static org.mockito.Mockito.*;
-import javax.servlet.http.*;
-import org.junit.jupiter.api.*;
-import java.io.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public class HelloWorldServletTest {
 
-    private final HttpServletRequest request = mock(HttpServletRequest.class);
-    private final HttpServletResponse response = mock(HttpServletResponse.class);
-    private final HelloWorldServlet servlet = new HelloWorldServlet();
-    private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-    @BeforeEach
-    public void setUp() throws IOException {
-        PrintWriter writer = new PrintWriter(outputStream);
-        when(response.getWriter()).thenReturn(writer);
-    }
-
     @Test
-    public void doGetWritesHelloWorld() throws ServletException, IOException {
-        servlet.doGet(request, response);
-        outputStream.flush(); // Asegúrate de que se escriba todo en el stream
-        String result = outputStream.toString();
-        Assertions.assertEquals("Hello, World.", result.trim());
+    public void doGetWritesHelloWorld() throws Exception {
+        // Crear un StringWriter para capturar la salida del servlet
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter writer = new PrintWriter(stringWriter);
+
+        // Crear un HelloWorldServlet y simular la respuesta
+        HelloWorldServlet servlet = new HelloWorldServlet();
+        HttpServletResponse response = mock(HttpServletResponse.class);
+        when(response.getWriter()).thenReturn(writer);
+
+        // Llamar al método doGet y verificar el resultado
+        servlet.doGet(null, response);
+
+        writer.flush();
+        assertEquals("Hello, World.", stringWriter.toString().trim());
     }
 }
