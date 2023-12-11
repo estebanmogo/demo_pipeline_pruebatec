@@ -14,12 +14,23 @@ public class HelloWorldServletTest {
 
     @BeforeEach
     public void setUp() throws IOException {
-        when(response.getOutputStream()).thenReturn(new ServletOutputStream() {
+        ServletOutputStream servletOutputStream = new ServletOutputStream() {
             @Override
             public void write(int b) {
                 outputStream.write(b);
             }
-        });
+
+            @Override
+            public boolean isReady() {
+            }
+
+            @Override
+            public void setWriteListener(WriteListener writeListener) {
+
+            }
+        };
+
+        when(response.getOutputStream()).thenReturn(servletOutputStream);
     }
 
     @Test
