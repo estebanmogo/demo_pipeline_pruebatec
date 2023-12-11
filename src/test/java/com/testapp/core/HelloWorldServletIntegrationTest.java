@@ -13,23 +13,18 @@ public class HelloWorldServletIntegrationTest {
 
     @Test
     public void testServlet() throws Exception {
-        // Crear mocks para HttpServletRequest y HttpServletResponse
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
 
-        // Usar ByteArrayOutputStream para capturar la salida del servlet
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         when(response.getOutputStream()).thenReturn(new DelegatingServletOutputStream(outputStream));
 
-        // Crear una instancia del servlet y llamar al método doGet
         HelloWorldServlet servlet = new HelloWorldServlet();
         servlet.doGet(request, response);
 
-        // Verificar que la salida es la esperada
         assertEquals("Hello, World.", outputStream.toString().trim());
     }
 
-    // Clase auxiliar para simular ServletOutputStream
     private static class DelegatingServletOutputStream extends javax.servlet.ServletOutputStream {
         private final ByteArrayOutputStream outputStream;
 
@@ -49,7 +44,6 @@ public class HelloWorldServletIntegrationTest {
 
         @Override
         public void setWriteListener(javax.servlet.WriteListener writeListener) {
-            // No es necesario implementar para esta prueba
         }
     }
 }
