@@ -31,17 +31,22 @@ steps:
     tasks: 'build'
   displayName: 'Construir y Empaquetar la Aplicación'
 
-# Paso 3: Construir Imagen Docker
+# Paso 3: Listar Archivos en build/libs/
+- script: |
+    ls -l $(Build.SourcesDirectory)/build/libs/
+  displayName: 'Listar Archivos en build/libs/'
+
+# Paso 4: Construir Imagen Docker
 - script: |
     docker build -t miapp .
   displayName: 'Construir Imagen Docker'
 
-# Paso 4: Ejecutar Contenedor Docker (Opcional)
+# Paso 5: Ejecutar Contenedor Docker (Opcional)
 - script: |
     docker run -d -p 8080:8080 --name miapp miapp
   displayName: 'Ejecutar Contenedor Docker'
 
-# Paso 5: Notificar sobre el Éxito o Fallos
+# Paso 6: Notificar sobre el Éxito o Fallos
 - script: |
     echo 'Enviando notificaciones...'
   displayName: 'Notificar sobre el éxito o fallos en el proceso'
