@@ -2,9 +2,10 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
+# Paso 1: Pruebas Unitarias y de Integración
 - task: Gradle@2
   inputs:
     workingDirectory: ''
@@ -15,4 +16,25 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
+    tasks: 'test'
+
+# Paso 2: Construir y Empaquetar la Aplicación
+- task: Gradle@2
+  inputs:
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
     tasks: 'build'
+
+# Paso 3: Implementar la Automatización del Despliegue
+- script: |
+    echo 'Desplegando la aplicación...'
+  displayName: 'Deployment'
+
+# Paso 4: Notificar sobre el Éxito o Fallos en el Proceso
+- script: |
+    echo 'Enviando notificaciones...'
+  displayName: 'Send Notification'
