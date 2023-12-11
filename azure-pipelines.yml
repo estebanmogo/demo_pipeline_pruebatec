@@ -58,19 +58,18 @@ steps:
     docker logs miapp
   displayName: 'Imprimir Logs del Contenedor Docker'
 
-# Paso 8: Pausa para Pruebas Manuales (5 minutos)
+# Paso 8: Imprimir URL para Acceso
+- script: |
+    echo "La aplicación puede ser accesible en http://$(curl -s http://whatismyip.akamai.com/):8080/"
+  displayName: 'Imprimir URL para Acceso'
+
+# Paso 9: Pausa para Pruebas Manuales (5 minutos)
 - script: |
     echo "Esperando 3 minutos para pruebas manuales..."
     sleep 180
   displayName: 'Pausa para Pruebas Manuales'
 
-# Paso 9: Notificar sobre el Éxito o Fallos
+# Paso 10: Notificar sobre el Éxito o Fallos
 - script: |
     echo 'Enviando notificaciones...'
-    # Aquí iría el comando o script para enviar notificaciones por correo electrónico.
-    # Esto puede requerir configuración adicional o integración con un servicio de correo electrónico.
   displayName: 'Notificar sobre el éxito o fallos en el proceso'
-
-
-
-
