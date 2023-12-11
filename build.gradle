@@ -1,6 +1,6 @@
 plugins {
     id 'war'
-    id 'org.gretty' version '3.0.5' // Para ejecutar tu aplicación web durante el desarrollo
+    id 'org.gretty' version '3.0.5'
     id 'eclipse-wtp'
 }
 
@@ -15,7 +15,6 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testImplementation 'org.mockito:mockito-core:3.6.0'
     testImplementation 'org.httpunit:httpunit:1.7.2'
-    testImplementation 'com.meterware:httpunit:1.7'
 }
 
 gretty {
@@ -24,9 +23,9 @@ gretty {
 }
 
 test {
-    useJUnitPlatform() // Indica a Gradle que use JUnit Platform para las pruebas.
+    useJUnitPlatform()
     reports {
-        junitXml.enabled = true // Habilita reportes de prueba en formato XML para CI.
-        html.enabled = false // Deshabilita reportes HTML si no son necesarios.
+        junitXml.enabled = true
+        html.enabled = false
     }
 }
