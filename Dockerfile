@@ -1,6 +1,6 @@
 FROM tomcat:9.0
 
-COPY build/libs/miapp.war /usr/local/tomcat/webapps/
+COPY build/libs/s.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
