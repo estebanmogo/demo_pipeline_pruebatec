@@ -41,12 +41,25 @@ steps:
     docker build -t miapp .
   displayName: 'Construir Imagen Docker'
 
-# Paso 5: Ejecutar Contenedor Docker (Opcional)
+# Paso 5: Ejecutar Contenedor Docker
 - script: |
     docker run -d -p 8080:8080 --name miapp miapp
   displayName: 'Ejecutar Contenedor Docker'
 
-# Paso 6: Notificar sobre el Éxito o Fallos
+# Paso 6: Imprimir URL para Acceso
+- script: |
+    echo "La aplicación puede ser accesible en http://$(curl -s http://whatismyip.akamai.com/):8080/si la IP es pública y los puertos están mapeados correctamente."
+  displayName: 'Imprimir URL para Acceso'
+
+# Paso 7: Pausa para Pruebas Manuales (5 minutos)
+- script: |
+    echo "Esperando 10 minutos para pruebas manuales..."
+    sleep 600
+  displayName: 'Pausa para Pruebas Manuales'
+
+# Paso 8: Notificar sobre el Éxito o Fallos
 - script: |
     echo 'Enviando notificaciones...'
+    # Aquí iría el comando o script para enviar notificaciones por correo electrónico.
+    # Esto puede requerir configuración adicional o integración con un servicio de correo electrónico.
   displayName: 'Notificar sobre el éxito o fallos en el proceso'
