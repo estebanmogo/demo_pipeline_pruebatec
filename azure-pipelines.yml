@@ -63,13 +63,21 @@ steps:
     echo "La aplicación puede ser accesible en http://$(curl -s http://whatismyip.akamai.com/):8080/"
   displayName: 'Imprimir URL para Acceso'
 
-# Paso 9: Pausa para Pruebas Manuales (5 minutos)
-- script: |
-    echo "Esperando 3 minutos para pruebas manuales..."
-    sleep 180
-  displayName: 'Pausa para Pruebas Manuales'
-
-# Paso 10: Notificar sobre el Éxito o Fallos
+# Paso 9: Notificar sobre el Éxito o Fallos
 - script: |
     echo 'Enviando notificaciones...'
+
+    # Ejemplo de cómo se podría enviar una notificación por correo electrónico:
+    # Este es un pseudocódigo y requerirá un servicio de correo electrónico real y su API para funcionar.
+
+    # curl -X POST -H "Authorization: Bearer tu_token_api" -H "Content-Type: application/json" \
+    # -d '{
+    #       "personalizations": [{"to": [{"email": "correo_del_destinatario"}]}],
+    #       "from": {"email": "tu_email_de_envio"},
+    #       "subject": "Notificación de Pipeline",
+    #       "content": [{"type": "text/plain", "value": "El pipeline $(Build.DefinitionName) ha completado su ejecución."}]
+    #     }' \
+    # https://servicio_email_api/v3/mail/send
+
+    echo 'Notificación de ejemplo enviada (pseudocódigo).'
   displayName: 'Notificar sobre el éxito o fallos en el proceso'
