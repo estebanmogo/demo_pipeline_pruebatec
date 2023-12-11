@@ -21,3 +21,10 @@ gretty {
     contextPath = '/'
     servletContainer = 'jetty9'
 }
+
+test {
+    reports {
+        junitXml.enabled = true
+        html.enabled = false
+    }
+}
