@@ -9,21 +9,12 @@ repositories {
 }
 
 dependencies {
-    // La API de Servlet será proporcionada por tu contenedor web en producción, pero
-    // necesitas incluirla en el classpath de compilación y prueba para que tu IDE
-    // y tus pruebas la reconozcan.
     providedCompile 'javax.servlet:servlet-api:2.5'
-    testImplementation 'javax.servlet:servlet-api:2.5'
-    
-    // JSTL solo es necesario en tiempo de ejecución.
     runtime 'javax.servlet:jstl:1.1.2'
-    
-    // Dependencias para pruebas unitarias con JUnit Jupiter y Mockito.
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testImplementation 'org.mockito:mockito-core:3.6.0'
-    
-    // HttpUnit para pruebas de integración HTTP.
+    testImplementation 'org.httpunit:httpunit:1.7.2'
     testImplementation 'com.meterware:httpunit:1.7'
 }
 
