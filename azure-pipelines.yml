@@ -5,7 +5,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-# Paso 1: Pruebas Unitarias y de Integración
+# Paso 1: Ejecución de Pruebas Unitarias y de Integración
 - task: Gradle@2
   inputs:
     workingDirectory: ''
@@ -34,7 +34,7 @@ steps:
     echo 'Desplegando la aplicación...'
   displayName: 'Deployment'
 
-# Paso 4: Notificar sobre el Éxito o Fallos en el Proceso
+# Paso 4: Notificar sobre el Éxito o Fallos
 - script: |
     echo 'Enviando notificaciones...'
   displayName: 'Send Notification'
